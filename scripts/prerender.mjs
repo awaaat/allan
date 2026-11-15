@@ -1,6 +1,6 @@
 import fs from 'fs';import {render} from '../dist-ssr/entry-server.js';
 const env=fs.existsSync('.env')?Object.fromEntries(fs.readFileSync('.env','utf8').split('\n').filter(l=>l.includes('=')).map(l=>l.split('='))):{};
-const site=(process.env.VITE_SITE_URL||env.VITE_SITE_URL||'https://allan.dev').replace(/\/$/,'');
+const site=(process.env.VITE_SITE_URL||env.VITE_SITE_URL||'https://allan.scapedatasolutions.com').replace(/\/$/,'');
 let h=fs.readFileSync('dist/index.html','utf8');
 if(!h.includes('<div id="root"><!--app--></div>'))throw new Error('root placeholder missing');
 fs.writeFileSync('dist/index.html',h.replace('<div id="root"><!--app--></div>','<div id="root" data-prerendered="1">'+render()+'</div>'));
